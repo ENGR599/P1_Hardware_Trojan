@@ -38,7 +38,7 @@ wide_uart DUT (
 assign RsRx = RsTx;
 
 //toggle the clock
-always #10 clk <= ~clk;
+always #5 clk <= ~clk;
 
 task initialize();
     clk = 'h0;
