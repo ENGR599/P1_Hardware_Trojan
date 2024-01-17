@@ -39,6 +39,9 @@ top DUT(
     .CLK100MHZ(clk),
     .btnC(rst),
 
+    .sw(2'h0),
+    .LED(),
+
     .RsRx,
     .RsTx
 

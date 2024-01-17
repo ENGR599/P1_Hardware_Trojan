@@ -5,6 +5,9 @@ module top(
     input CLK100MHZ,
     input btnC,
 
+    input [1:0] sw,
+    output [1:0] LED,
+
     input RsRx,
     output RsTx
 
@@ -24,6 +27,9 @@ logic       m_axis_tready;
 logic [63:0] desIn, nDesIn;
 integer  count, nCount;
 wire [63:0] desOut;
+
+//couple LEDs with switches
+assign LED = sw;
 
 // use this to set the key
 wire [63:0] key64 = 64'h0123456789ABCDEF;
