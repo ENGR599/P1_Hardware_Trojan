@@ -12,7 +12,7 @@ create_project -force vivado.xpr ${BASEDIR}/vivado -part xc7a35ticpg236-1L
 add_files [glob ${SRCDIR}/*.v]
 
 #set the top for synthesis
-set_property top top [current_fileset]
+#set_property top top [current_fileset]
 
 # add testbenches
 #create_fileset -simset sim_top 
@@ -34,7 +34,7 @@ set_property top top [current_fileset]
 add_files -fileset constrs_1 ${XDCDIR}/Basys3_Master.xdc
 
 # set all *.sv to SystemVerilog mode
-set_property file_type SystemVerilog [get_files *.sv]
+#set_property file_type SystemVerilog [get_files *.sv]
 
 #make sims run longer by default
 set_property -name {xsim.simulate.runtime} -value {1000us} -objects [get_filesets sim_*]
