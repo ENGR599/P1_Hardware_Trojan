@@ -53,37 +53,31 @@
 //// slower.
 ////////////////////////////////////////////////////////////////////
 
-module des(clk_in, rst);
-	input rst;
-	input clk_in;
-	wire [63:0] desout;
-	wire [63:0] desIn;
+module des(
+	input clk,
+	input rst,
+    input [63:0] key,
+	input [63:0] desIn,
+	output [63:0] desOut
+    );
+
 	wire [63:0] key64;
 	wire [55:0] key56;
 	reg [3:0] cnt;
-	wire clk;
-	
-	divi Uclk(.clk(clk_in), .clkout(clk));
-	
 
-	assign desIn=64'hA42F891BD376CE05;
-	assign key64=64'h0123456789ABCDEF;
+	//assign desIn=64'hA42F891BD376CE05;
+	//assign key64=64'h0123456789ABCDEF;
+    assign key64 = key;
+
 	assign key56={key64[63:57],key64[55:49],key64[47:41],key64[39:33],key64[31:25],key64[23:17],key64[15:9],key64[7:1]};
 	
-	des_o U1(.desOut(desout), 
+	des_o U1(.desOut(desOut), 
 				.desIn(desIn), 
 				.key(key56), 
 				.decrypt(1'b0), 
 				.roundSel(cnt), 
 				.clk(clk));
 				
-	ram1 U2(
-	.address({1'b0,cnt[3:0]}),
-	.clock(clk),
-	.data(desout),
-	.wren(1'b1),
-	.q());
-	
 	always @(posedge clk)
 		begin
 			if(rst) cnt=4'b0000;

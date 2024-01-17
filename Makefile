@@ -10,6 +10,7 @@ vivado/vivado.xpr: tcl/setup.tcl
 
 .PHONY:  setup
 setup:  vivado/vivado.xpr
+	python3 -m pip install pycryptodome --user
 
 .PHONY: bitstream
 bitstream:  vivado/vivado.xpr tcl/impl.tcl 
