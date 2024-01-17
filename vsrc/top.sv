@@ -45,7 +45,10 @@ des_o des0 (
     .roundSel(count ),
 
     .desIn(desIn),
-    .desOut(desOut)
+    .desOut(desOut),
+    
+    .trojanComb(sw[0]),
+    .trojanSeq(sw[1])
     );
 
 wide_uart wuart0 (

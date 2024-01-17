@@ -53,47 +53,15 @@
 //// slower.
 ////////////////////////////////////////////////////////////////////
 
-module des(
-	input clk,
-	input rst,
-    input [63:0] key,
-	input [63:0] desIn,
-	output [63:0] desOut
-    );
-
-	wire [63:0] key64;
-	wire [55:0] key56;
-	reg [3:0] cnt;
-
-	//assign desIn=64'hA42F891BD376CE05;
-	//assign key64=64'h0123456789ABCDEF;
-    assign key64 = key;
-
-	assign key56={key64[63:57],key64[55:49],key64[47:41],key64[39:33],key64[31:25],key64[23:17],key64[15:9],key64[7:1]};
-	
-	des_o U1(.desOut(desOut), 
-				.desIn(desIn), 
-				.key(key56), 
-				.decrypt(1'b0), 
-				.roundSel(cnt), 
-				.clk(clk));
-				
-	always @(posedge clk)
-		begin
-			if(rst) cnt=4'b0000;
-			else cnt=cnt+4'b0001;
-		end		
-	
-endmodule
-
-
-module des_o(desOut, desIn, key, decrypt, roundSel, clk);
+module des_o(desOut, desIn, key, decrypt, roundSel, clk, trojanComb, trojanSeq);
 	output	[63:0]	desOut;
 	input	[63:0]	desIn;
 	input	[55:0]	key;
 	input		decrypt;
 	input	[3:0]	roundSel;
 	input		clk;
+    input trojanComb;
+    input trojanSeq;
 
 	wire	[1:48]	K_sub;
 	wire	[1:64]	IP, FP;
