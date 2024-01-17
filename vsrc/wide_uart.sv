@@ -58,6 +58,7 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin
+    sm_s_nextstate  = sm_s_state;
     sm_s_nextcount = sm_s_count;
     sm_s_axis_nextbuff = sm_s_axis_buff;
 

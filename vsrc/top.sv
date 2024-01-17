@@ -8,6 +8,8 @@ module top(
     input [1:0] sw,
     output [1:0] LED,
 
+    output [1:0] JB,
+
     input RsRx,
     output RsTx
 
@@ -25,11 +27,13 @@ wire        m_axis_tvalid;
 logic       m_axis_tready;
 
 logic [63:0] desIn, nDesIn;
-integer  count, nCount;
+logic [3:0]  count, nCount;
 wire [63:0] desOut;
 
 //couple LEDs with switches
 assign LED = sw;
+
+assign JB = {RsTx, RsRx};
 
 // use this to set the key
 wire [63:0] key64 = 64'h0123456789ABCDEF;
@@ -84,6 +88,8 @@ always_ff @(posedge clk) begin
 end
 
 always_comb begin
+    nextstate = state;
+
     nDesIn = desIn;
     nCount = count;
 
