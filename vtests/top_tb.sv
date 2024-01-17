@@ -48,7 +48,8 @@ top DUT(
 );
 
 //toggle the clock
-always #10 clk <= ~clk;
+// @ 100MHz
+always #5 clk <= ~clk;
 
 task initialize();
     clk = 'h0;
@@ -81,7 +82,23 @@ initial begin
     assert(m_axis_tdata == 64'h167c4586e73882e6) else $fatal(1, "bad Rx");
     
     @(posedge clk);
+    
+    //do the same thing again...
+    s_axis_tdata = 64'hfeedfacedeadbeef;
+    s_axis_tvalid = 'h1;
+    @(posedge clk);
+    while (s_axis_tready != 'h1)
+        @(posedge clk);
+    s_axis_tvalid = 'h0;
 
+    m_axis_tready = 'h1;
+    @(posedge clk);
+    while (m_axis_tvalid != 'h1)
+        @(posedge clk);
+
+    $display("recv: %h", m_axis_tdata);
+    assert(m_axis_tdata == 64'h167c4586e73882e6) else $fatal(1, "bad Rx");
+ 
     $display("@@@Passed");
 
     $finish;

@@ -156,7 +156,7 @@ uart uart0 (
     .rx_overrun_error(),
     .rx_frame_error(),
 
-    .prescale(16'd1302)
+    .prescale(16'd108)
 
 );
 
