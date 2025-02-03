@@ -18,7 +18,7 @@ $ vivado vivado/vivado.xpr
 
 The provided starter code implements a Data Encryption Standard (DES) and Universal Asynchronous Receiver/Transmitter (UART) interface in hardware. A rough block diagram is shown in the figure below.
 
-*** TODO: Add image ***
+![Block Diagram of Design](./img/hardware_security_p1_i1.png)
 
 ### Programming the Basys3 Board
 Please refer to the [ENGR 210 documentation](https://engr210.github.io/projects/vivado_tutorial) to generate the bitstream + program the Basys3 board.
@@ -65,7 +65,7 @@ The trigger condition of the Trojan is when the least significant 2 bits of outp
 
 The Feistal function is responsible for both the substitution and premutations of each round of DES.
 
-*** TODO: Add image ***
+![DES Operation](./img/hardware_security_p1_i2.png)
 
 In the DES module provided, the Feistal function is found in the `des_o` module as a `crp` submodule instantiated as `u0`. In this verilog, the P output is assigned to a signal called `out` so your Trojan needs to trigger off of the `out` signal. 
 
