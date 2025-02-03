@@ -1,7 +1,7 @@
 # ENGR 599 Lab 1: Hardware Trojans
 Adapted from Swarup Bhunia at the University of Florida.
 
-**Due: 11:59 PM, Friday Feb 7, 2025**
+**Due: 11:59 PM, Friday Feb 17, 2025**
 
 ## Overview
 We describe an experiment on hardware Trojan attacks, in the form of malicious modifications of electronic hardware, that post major security concerns in the electronics industry.
